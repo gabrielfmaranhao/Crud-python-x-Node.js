@@ -11,28 +11,21 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 import os
 import dotenv
 
 dotenv.load_dotenv()
+# após a instalação do python-doenv, e criação das variáveis faço a importação para o uso das variáveis
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
 
-# Application definition
+# faço a abstração dos pacotes já vindos do django(DJANGO_APPS) com os pacotes que instalei por fora(THIRD_PARTY_APPS) e os apps criados por mim(MY_APPS)
 DJANGO_APPS =  [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,11 +69,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = '_core.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+# importo das varáveis de ambiente os dados necessários para a conexão com o banco de dados
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -89,11 +78,6 @@ DATABASES = {
         "PASSWORD": os.getenv("POSTGRES_PASSWORD")
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -109,10 +93,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -121,14 +101,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
+# Indico ao django que o a model.adimn será a que eu criei a User
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "users.User"
+# Aqui configuro para que o token dure 24h o de acesso e o de refresh 10 dias 
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=24),
+    "REFRESH_TOKEN_LIFETIME":timedelta(days=10),
+    }

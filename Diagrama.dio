@@ -1,24 +1,24 @@
 <mxfile host="65bd71144e">
     <diagram id="PzUpa_LbkOmveRZ_tFxL" name="Página-1">
-        <mxGraphModel dx="650" dy="399" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="353" dy="737" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="17" value="User" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=20;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;glass=0;sketch=0;" parent="1" vertex="1">
-                    <mxGeometry x="190" y="100" width="210" height="202" as="geometry">
+                    <mxGeometry x="190" y="100" width="210" height="254" as="geometry">
                         <mxRectangle x="100" y="140" width="60" height="26" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="18" value="PK id BIGSERIAL UNIQUE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
                     <mxGeometry y="20" width="210" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="19" value="username VARCHAR(255) UNIQUE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
+                <mxCell id="19" value="username VARCHAR(150) UNIQUE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
                     <mxGeometry y="46" width="210" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="20" value="email VARCHAR(255) UNIQUE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
+                <mxCell id="20" value="email VARCHAR(254) UNIQUE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
                     <mxGeometry y="72" width="210" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="22" value="password VARCHAR(255)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
+                <mxCell id="22" value="password VARCHAR(128)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
                     <mxGeometry y="98" width="210" height="26" as="geometry"/>
                 </mxCell>
                 <mxCell id="23" value="is_superuser BOOLEAN" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
@@ -27,8 +27,14 @@
                 <mxCell id="24" value="created_at DATE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
                     <mxGeometry y="150" width="210" height="26" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="updated_at DATE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
+                <mxCell id="25" value="is_active BOOLEAN" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
                     <mxGeometry y="176" width="210" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="is_staff BOOLEAN " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
+                    <mxGeometry y="202" width="210" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="updated_at DATE" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;glass=0;sketch=0;" parent="17" vertex="1">
+                    <mxGeometry y="228" width="210" height="26" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
