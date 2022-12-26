@@ -2,8 +2,8 @@ import { sessionRoutes } from "./session.routes";
 import { usersRoutes } from "./users.routes";
 import { Express } from "express";
 const appRoutes = ( app: Express) => {
-    app.use("api/users", usersRoutes)
-    app.use("api", sessionRoutes)
+    app.use("/api/users", usersRoutes)
+    app.use("/api/users", sessionRoutes)
 }
 
 export default appRoutes

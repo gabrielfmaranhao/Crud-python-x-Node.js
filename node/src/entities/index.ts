@@ -16,9 +16,9 @@ class User {
     is_active: boolean
     @Column({type:'boolean', default: false, nullable:true})
     is_staff: boolean
-    @CreateDateColumn()
+    @CreateDateColumn({type:"timestamptz"})
     created_at: Date
-    @UpdateDateColumn()
+    @UpdateDateColumn({type:"timestamptz"})
     updated_at: Date
 }
 
