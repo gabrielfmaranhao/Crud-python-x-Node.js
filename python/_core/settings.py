@@ -37,6 +37,7 @@ DJANGO_APPS =  [
 ]
 THIRD_PARTY_APPS = [
     "rest_framework",
+    "drf_spectacular"
 ]
 MY_APPS = ['users']
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MY_APPS
@@ -121,3 +122,15 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.MD5PasswordHasher',
     'django.contrib.auth.hashers.CryptPasswordHasher',
 )
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Api python',
+    'DESCRIPTION': 'Apy python fazendo um comparativo com outra api em node.',
+    'TOS': 'https://github.com/gabrielfmaranhao',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
