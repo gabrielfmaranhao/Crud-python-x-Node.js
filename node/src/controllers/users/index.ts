@@ -11,7 +11,7 @@ export const createUserController = async (request: Request, response: Response)
         const data : IUserRequest = request.body
         const user: IUserResponse = await createUserService(data)
         const {password, is_staff, ...createUserRest} = user
-        return response.status(200).json(createUserRest)
+        return response.status(201).json(createUserRest)
     } catch (error) {
         if(error instanceof AppError) {
             return response.status(error.statusCode).json({detail: error.message})

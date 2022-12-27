@@ -20,7 +20,7 @@ export const verifyAuthTokenMiddleware = (req: Request, res: Response, next: Nex
             });
         }
         const user = await userRepository.findOneBy({id: decode.user_id})
-        req.user = {username: user!.username, id: decode.sub, is_superuser: user!.is_superuser}
+        req.user =  {is_superuser: user!.is_superuser, user_id: user!.id}
         return next()
     })
     

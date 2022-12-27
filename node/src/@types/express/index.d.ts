@@ -4,8 +4,7 @@ declare global {
     namespace Express {
         interface Request {
             user: {
-                id: string
-                username: string
+                user_id: number
                 is_superuser: boolean
             }
         }

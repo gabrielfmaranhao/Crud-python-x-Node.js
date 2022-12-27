@@ -5,10 +5,10 @@ export const is_superuserMiddleware = async ( request: Request, response: Respon
     if (request.user.is_superuser){
         return next()
     }
-    else if ( request.user.username === request.body.username) {
+    else if ( request.user.user_id === parseInt(request.params.user_id)) {
         return next()
     }
     else{
-        return new AppError("user Não autorizado", 403)
+        return response.status(403).json({detail:"You do not have permission to perform this action."})
     }
 }

@@ -19,8 +19,8 @@ export interface ISessionLogin {
 }
 
 export interface IUpdateUser {
-    username: string
-    email: string
-    password: string
-    is_superUser: boolean
+    username?: string
+    email?: string
+    password?: string
+    is_superUser?: boolean
 }

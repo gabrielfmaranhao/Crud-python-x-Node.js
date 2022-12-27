@@ -13,11 +13,9 @@ export const createUserService = async ( data:IUserRequest ) :Promise<User> => {
     }
     const findUserEmail = await userRepository.findOneBy({email: data.email})
     if (findUserEmail) {
-        throw new AppError("This field must be unique.", 400)
+        throw new AppError("This email field must be unique.", 400)
     }
-    const passwordHash = await hash(data.password,12)
-    const bcrypt = "bcrypt$"
-    data.password =  bcrypt.concat(passwordHash)
+    data.password = "bcrypt$".concat(await hash(data.password,12))
     const user = userRepository.create(data)
     await userRepository.save(user)
     return user
