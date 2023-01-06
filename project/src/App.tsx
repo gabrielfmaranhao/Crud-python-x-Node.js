@@ -1,5 +1,5 @@
-import RoutesComponent from "./src/routes";
-import { Global } from "./src/styles";
+import RoutesComponent from "./routes";
+import { Global } from "./styles";
 
 function App() {
   return (

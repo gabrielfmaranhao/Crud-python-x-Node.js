@@ -6,9 +6,15 @@ import { IRegister } from "../../interfaces"
 import { Link } from "react-router-dom"
 export const Register = () => {
     const [disable, setDisable] = useState(true)
-    const {register, handleSubmit, formState:{errors} } = useForm<IRegister>()
+    const {register, handleSubmit, formState:{errors} } = useForm<IRegister>({})
+    const registerUser = async(data:IRegister) => {
+        console.log(data)
+        // await api.post("/user",data)
+        // .then(() => navigate("/session"))
+        // .catch((error)=> console.log(error))
+    }
     return(
-        <Form operation="Register" description_operation="Enter your credentials to register your account" title="CRUD-FULL">
+        <Form operation="Register" description_operation="Enter your credentials to register your account" title="CRUD-FULL" onSubmit={handleSubmit(registerUser)}>
             <div >
                 <label htmlFor="email">Email</label>
                 <input type="email" placeholder="Enter your email" {...register("email")}/>
@@ -35,7 +41,7 @@ export const Register = () => {
                     <option value="false">False</option>
                 </select>
             </div>
-            <button type="submit">Sign in</button>
+            <button>Sign in</button>
             <div className="register">
                 <span>Have acount ?</span>
                 <Link to={"/"}>Sing in </Link>
