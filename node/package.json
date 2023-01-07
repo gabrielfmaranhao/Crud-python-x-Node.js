@@ -1,4 +1,5 @@
 {
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
