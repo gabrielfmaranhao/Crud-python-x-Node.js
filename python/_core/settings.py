@@ -14,6 +14,7 @@ from pathlib import Path
 from datetime import timedelta
 import os
 import dotenv
+import dj_database_url
 
 
 dotenv.load_dotenv()
@@ -21,14 +22,18 @@ dotenv.load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = True
+DEBUG = os.getenv('DEBUG', False)
 
 ALLOWED_HOSTS = []
 
+# RENDER_EXTERNAL_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME')
+# if RENDER_EXTERNAL_HOSTNAME :
+#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # faço a abstração dos pacotes já vindos do django(DJANGO_APPS) com os pacotes que instalei por fora(THIRD_PARTY_APPS) e os apps criados por mim(MY_APPS)
 DJANGO_APPS =  [
     'django.contrib.admin',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -80,6 +85,12 @@ DATABASES = {
         "PASSWORD": os.getenv("POSTGRES_PASSWORD")
     }
 }
+
+DATABASE_URL = os.getenv('DATABASE_URL')
+if DATABASE_URL:
+    db_deploy = dj_database_url.config(default=DATABASE_URL)
+    DATABASES['default'].update(db_deploy)
+    DEBUG = False
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -104,6 +115,10 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Indico ao django que o a model.adimn será a que eu criei a User
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -132,5 +147,4 @@ SPECTACULAR_SETTINGS = {
     'TOS': 'https://github.com/gabrielfmaranhao',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
-    # OTHER SETTINGS
 }
