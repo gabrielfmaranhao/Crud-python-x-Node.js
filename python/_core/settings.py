@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = ["api-crud-full-python.onrender.com", "0.0.0.0"]
+ALLOWED_HOSTS = ["api-crud-full-python.onrender.com"]
 
 # faço a abstração dos pacotes já vindos do django(DJANGO_APPS) com os pacotes que instalei por fora(THIRD_PARTY_APPS) e os apps criados por mim(MY_APPS)
 DJANGO_APPS =  [

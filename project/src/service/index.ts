@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const api_python = "https://api-crud-full-python.onrender.com/api/"
+const api_node = "https://api-crud-full-node.onrender.com/api/" // Funcionando Normal 
 const token = localStorage.getItem("@Crud-full: token")
 const api = axios.create({
-    baseURL: "http://127.0.0.1:8000/",
+    baseURL: api_python,
     headers: {
         'Authorization': `Bearer ${token}`
     }

@@ -4,14 +4,15 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { IRegister } from "../../interfaces"
 import { Link } from "react-router-dom"
+import api from "../../service"
 export const Register = () => {
     const [disable, setDisable] = useState(true)
     const {register, handleSubmit, formState:{errors} } = useForm<IRegister>({})
-    const registerUser = async(data:IRegister) => {
+    const registerUser = async (data:IRegister) => {
         console.log(data)
-        // await api.post("/user",data)
-        // .then(() => navigate("/session"))
-        // .catch((error)=> console.log(error))
+        await api.get("users/")
+        .then((response) => console.log(response))
+        .catch((error)=> console.log(error))
     }
     return(
         <Form operation="Register" description_operation="Enter your credentials to register your account" title="CRUD-FULL" onSubmit={handleSubmit(registerUser)}>
