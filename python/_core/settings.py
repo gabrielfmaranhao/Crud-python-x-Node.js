@@ -29,7 +29,6 @@ ALLOWED_HOSTS = ["api-crud-full-python.onrender.com", "0.0.0.0"]
 # faço a abstração dos pacotes já vindos do django(DJANGO_APPS) com os pacotes que instalei por fora(THIRD_PARTY_APPS) e os apps criados por mim(MY_APPS)
 DJANGO_APPS =  [
     'django.contrib.admin',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -45,6 +44,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
