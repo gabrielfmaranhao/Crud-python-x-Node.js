@@ -7,12 +7,12 @@
 <h3>Como o projeto tem duas api`s, você pode utilizar as duas urls seguintes:</h3>
 <ol>
     <li>
-        <a>link api node</a>
+        <strong>https://api-crud-full-node.onrender.com</strong>
     </li>
     <li>
-        <a>link api python</a>
+        <strong>https://api-crud-full-python.onrender.com</strong>
     </li>
 </ol>
 
 <p>Seguindo a documentação das api`s disponibilizado nesse link: </p> 
-<a>Link documentação do python</a>
+<a href="https://api-crud-full-python.onrender.com/api/docs/swagger-ui/"> Link dock</>
