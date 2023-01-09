@@ -5,10 +5,10 @@ require("dotenv/config");
 const AppDataSource = new typeorm_1.DataSource({
     type: 'postgres',
     url: process.env.DATABASE_URL,
-    ssl: false,
+    ssl: true,
     logging: true,
     synchronize: false,
-    entities: ["src/entities/*.ts"],
-    migrations: ["src/migrations/*.ts"],
+    entities: process.env.NODE_ENV === "production" ? ["dist/src/entities/*.js"] : ["src/entities/*.ts"],
+    migrations: process.env.NODE_ENV === "production" ? ["dist/src/migrations*.js"] : ["src/migrations/*.ts"]
 });
 exports.default = AppDataSource;

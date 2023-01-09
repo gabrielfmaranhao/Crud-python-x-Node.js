@@ -14,12 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
 const data_source_1 = __importDefault(require("./data-source"));
+require("dotenv/config");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     yield data_source_1.default.initialize()
         .catch((err) => {
         console.error("Error during Data Source initialization", err);
     });
-    app_1.default.listen(3000, () => {
+    app_1.default.listen(process.env.PORT || 3000, () => {
         console.log("Servidor executando");
     });
 }))();
