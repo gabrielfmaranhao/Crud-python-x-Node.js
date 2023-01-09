@@ -16,7 +16,7 @@ exports.verifyAuthTokenMiddleware = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 require("dotenv/config");
 const entities_1 = __importDefault(require("../entities"));
-const data_source_1 = __importDefault(require("../data-source"));
+const data_source_1 = __importDefault(require("../../data-source"));
 const verifyAuthTokenMiddleware = (req, res, next) => {
     const userRepository = data_source_1.default.getRepository(entities_1.default);
     let token = req.headers.authorization;
