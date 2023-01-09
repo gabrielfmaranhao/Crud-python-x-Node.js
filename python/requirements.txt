@@ -13,7 +13,7 @@ executing==1.2.0
 gunicorn==20.1.0
 inflection==0.5.1
 ipdb==0.13.11
-ipython==8.7.0
+ipython==7.34.0
 jedi==0.18.2
 jsonschema==4.17.3
 matplotlib-inline==0.1.6
