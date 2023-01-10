@@ -5,6 +5,10 @@ export interface IRegister  {
     password: string
     is_superuser: boolean
 }
+export interface ILogin {
+    username: string
+    password: string
+}
 export interface IFormProps extends FormHTMLAttributes<HTMLFormElement> {
     title: string
     operation: string

@@ -51,6 +51,9 @@ export const Container = styled.div`
             height: 44px;
             padding-left: 10px;
         }
+        .error {
+            border-color: red
+        }
         select {
             
             box-sizing: border-box;
