@@ -20,7 +20,6 @@ export const Login = () => {
     const loginUser =  async (data: ILogin) => {
         try {
             const response = await toast.promise(api.post("users/login/",data), {pending: "Verificando Credenciais", error: "erro", success:"Bem vindo!"})
-            console.log(response.data)
             localStorage.setItem("@Crud-full: token", response.data.token)
             setTimeout(() => navigate("/dashboard"), 3500)
         } catch (error) {

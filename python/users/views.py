@@ -3,7 +3,8 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .permissions import IsAccountOwner
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from .serializers import UserSerializer
-
+from rest_framework.views import Response, APIView
+import ipdb
 
 class UserView(ListCreateAPIView):
     serializer_class = UserSerializer
@@ -19,5 +20,9 @@ class UserDetailView(RetrieveUpdateDestroyAPIView):
         instance.is_active = False
         instance.save()
 
-
-    ...
+class UserDetailRetrive(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAccountOwner]
+    def get(self, request):
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
