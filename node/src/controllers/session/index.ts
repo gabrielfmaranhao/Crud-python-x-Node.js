@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AppError } from "../../errors";
 import { ISessionLogin } from "../../interfaces";
-import { sessionLoginService } from "../../services/session/login.service";
+import { sessionLoginService } from "../../services";
 
 export const loginUserController =  async (request: Request, response: Response) => {
     try {

@@ -1,11 +1,7 @@
 import { Request, Response } from "express";
 import { AppError } from "../../errors";
 import { IUserRequest, IUserResponse } from "../../interfaces";
-import { createUserService } from "../../services/users/create.service";
-import { listUserService } from "../../services/users/list.service";
-import { detailUserService } from "../../services/users/detail.service";
-import { updateUserService } from "../../services/users/update.service";
-import { deleteUserService } from "../../services/users/delete.service";
+import { createUserService, deleteUserService, detailUserService, listUserService, retriveUserService,updateUserService } from "../../services";
 export const createUserController = async (request: Request, response: Response) => {
     try {
         const data : IUserRequest = request.body
@@ -65,3 +61,8 @@ export const detailUserController = async (request: Request, response: Response)
         }
     }
 }//OK 
+export const retriveUserController = async (request: Request, response: Response) => {
+    const user = await retriveUserService(request.user.user_id);
+    const {password, is_staff, ...rest} = user
+    return response.status(200).json(rest)
+}//OK

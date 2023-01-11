@@ -1,11 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUserController = exports.updateUserController = exports.listUserController = exports.detailUserController = exports.deleteUserController = exports.createUserController = void 0;
+exports.loginUserController = exports.retriveUserController = exports.updateUserController = exports.listUserController = exports.detailUserController = exports.deleteUserController = exports.createUserController = void 0;
 const users_1 = require("./users");
 Object.defineProperty(exports, "createUserController", { enumerable: true, get: function () { return users_1.createUserController; } });
 Object.defineProperty(exports, "deleteUserController", { enumerable: true, get: function () { return users_1.deleteUserController; } });
 Object.defineProperty(exports, "detailUserController", { enumerable: true, get: function () { return users_1.detailUserController; } });
 Object.defineProperty(exports, "listUserController", { enumerable: true, get: function () { return users_1.listUserController; } });
 Object.defineProperty(exports, "updateUserController", { enumerable: true, get: function () { return users_1.updateUserController; } });
+Object.defineProperty(exports, "retriveUserController", { enumerable: true, get: function () { return users_1.retriveUserController; } });
 const session_1 = require("./session");
 Object.defineProperty(exports, "loginUserController", { enumerable: true, get: function () { return session_1.loginUserController; } });

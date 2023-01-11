@@ -10,7 +10,7 @@ urlpatterns = [
     path("users/", views.UserView.as_view()),
     path("users/<int:user_id>/", views.UserDetailView.as_view()),
     path("users/login/", jwt_views.TokenObtainPairView.as_view()),
-    path("users/profile/", views.UserDetailRetrive.as_view()),
+    path("users/profile/me/", views.UserDetailRetrive.as_view()),
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     path('docs/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui')
 ]

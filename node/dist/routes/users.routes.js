@@ -12,4 +12,5 @@ exports.usersRoutes.get("/", controllers_1.listUserController);
 // Precisa está autenticado 
 exports.usersRoutes.patch("/:user_id/", middlewares_1.verifyAuthTokenMiddleware, (0, serializer_middleware_1.serializerMiddleware)(serialisers_1.updateUserSerializer), middlewares_1.is_superuserMiddleware, controllers_1.updateUserController);
 exports.usersRoutes.delete("/:user_id/", middlewares_1.verifyAuthTokenMiddleware, middlewares_1.is_superuserMiddleware, controllers_1.deleteUserController);
+exports.usersRoutes.get("/profile/me/", middlewares_1.verifyAuthTokenMiddleware, controllers_1.retriveUserController);
 exports.usersRoutes.get("/:user_id/", middlewares_1.verifyAuthTokenMiddleware, middlewares_1.is_superuserMiddleware, controllers_1.detailUserController);

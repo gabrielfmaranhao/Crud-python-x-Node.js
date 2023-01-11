@@ -20,17 +20,13 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.detailUserController = exports.deleteUserController = exports.updateUserController = exports.listUserController = exports.createUserController = void 0;
+exports.retriveUserController = exports.detailUserController = exports.deleteUserController = exports.updateUserController = exports.listUserController = exports.createUserController = void 0;
 const errors_1 = require("../../errors");
-const create_service_1 = require("../../services/users/create.service");
-const list_service_1 = require("../../services/users/list.service");
-const detail_service_1 = require("../../services/users/detail.service");
-const update_service_1 = require("../../services/users/update.service");
-const delete_service_1 = require("../../services/users/delete.service");
+const services_1 = require("../../services");
 const createUserController = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const data = request.body;
-        const user = yield (0, create_service_1.createUserService)(data);
+        const user = yield (0, services_1.createUserService)(data);
         const { password, is_staff } = user, createUserRest = __rest(user, ["password", "is_staff"]);
         return response.status(201).json(createUserRest);
     }
@@ -42,7 +38,7 @@ const createUserController = (request, response) => __awaiter(void 0, void 0, vo
 }); //OK 
 exports.createUserController = createUserController;
 const listUserController = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    const list = yield (0, list_service_1.listUserService)();
+    const list = yield (0, services_1.listUserService)();
     const newList = list.map((obj) => {
         const { password, is_staff } = obj, rest = __rest(obj, ["password", "is_staff"]);
         return rest;
@@ -55,7 +51,7 @@ const updateUserController = (request, response) => __awaiter(void 0, void 0, vo
         const user_id = request.params.user_id;
         console.log(user_id);
         const data = request.body;
-        const user = yield (0, update_service_1.updateUserService)(parseInt(user_id), data);
+        const user = yield (0, services_1.updateUserService)(parseInt(user_id), data);
         const { password, is_staff } = user, rest = __rest(user, ["password", "is_staff"]);
         return response.status(200).json(rest);
     }
@@ -69,7 +65,7 @@ exports.updateUserController = updateUserController;
 const deleteUserController = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user_id = request.params.user_id;
-        yield (0, delete_service_1.deleteUserService)(parseInt(user_id));
+        yield (0, services_1.deleteUserService)(parseInt(user_id));
         return response.status(200).json({});
     }
     catch (error) {
@@ -82,7 +78,7 @@ exports.deleteUserController = deleteUserController;
 const detailUserController = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user_id = request.params.user_id;
-        const user = yield (0, detail_service_1.detailUserService)(parseInt(user_id));
+        const user = yield (0, services_1.detailUserService)(parseInt(user_id));
         const { password, is_staff } = user, rest = __rest(user, ["password", "is_staff"]);
         return response.status(200).json(rest);
     }
@@ -93,3 +89,9 @@ const detailUserController = (request, response) => __awaiter(void 0, void 0, vo
     }
 }); //OK 
 exports.detailUserController = detailUserController;
+const retriveUserController = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = yield (0, services_1.retriveUserService)(request.user.user_id);
+    const { password, is_staff } = user, rest = __rest(user, ["password", "is_staff"]);
+    return response.status(200).json(rest);
+}); //OK
+exports.retriveUserController = retriveUserController;

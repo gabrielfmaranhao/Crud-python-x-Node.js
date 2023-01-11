@@ -8,20 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUserController = void 0;
-const errors_1 = require("../../errors");
-const services_1 = require("../../services");
-const loginUserController = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const data = request.body;
-        const token = yield (0, services_1.sessionLoginService)(data);
-        return response.status(200).json({ access: token });
-    }
-    catch (error) {
-        if (error instanceof errors_1.AppError) {
-            return response.status(error.statusCode).json({ detail: error.message });
-        }
-    }
+exports.retriveUserService = void 0;
+const entities_1 = __importDefault(require("../../entities"));
+const data_source_1 = __importDefault(require("../../data-source"));
+const retriveUserService = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const userRepository = data_source_1.default.getRepository(entities_1.default);
+    const userFind = yield userRepository.findOneBy({ id });
+    console.log(userFind);
+    return userFind;
 });
-exports.loginUserController = loginUserController;
+exports.retriveUserService = retriveUserService;
