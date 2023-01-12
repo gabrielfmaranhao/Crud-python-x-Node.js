@@ -1,34 +1,25 @@
 import { Form } from "../../components"
 import {BsFillEyeSlashFill} from "react-icons/bs"
-import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { Link } from "react-router-dom"
 import { useForm } from "react-hook-form"
-import api from "../../service"
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { yupResolver } from "@hookform/resolvers/yup"
 import { validationUserLogin } from "../../utils"
 import { ILogin } from "../../interfaces"
-
+import { UserContext } from "../../context/users"
+import { ToggleSwitch } from "../../components"
 
 
 
 export const Login = () => {
-    const [disable, setDisable] = useState(true)
     const {register, handleSubmit, formState:{errors}} = useForm<ILogin>({ resolver: yupResolver(validationUserLogin)});
-    const navigate = useNavigate()
-    const loginUser =  async (data: ILogin) => {
-        try {
-            const response = await toast.promise(api.post("users/login/",data), {pending: "Verificando Credenciais", error: "erro", success:"Bem vindo!"})
-            localStorage.setItem("@Crud-full: token", response.data.token)
-            setTimeout(() => navigate("/dashboard"), 3500)
-        } catch (error) {
-            toast.error("Email ou senha incorretos !")
-            console.log(error)
-        }
-    }
+    const {disable, setDisable, loginUser } = useContext(UserContext)
+    
     return(
         <>
+            <ToggleSwitch/>
             <Form operation="Sign In" description_operation="Enter your credentials to access your account" title="CRUD-FULL" onSubmit={handleSubmit(loginUser)}>
                 <div >
                     <label htmlFor="email"> Username </label>

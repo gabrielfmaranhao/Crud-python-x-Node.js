@@ -22,11 +22,26 @@ export interface IUser {
     username: string
     email: string
     is_active: boolean
+    is_superuser: boolean
 }
 
 export interface IUserContextProps {
     users: IUser[]
     setUsers: React.Dispatch<React.SetStateAction<IUser[]>>
+    user: IUser | undefined
+    setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>
+    loading: boolean
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+    loadUser: () => Promise<void>
+    loginUser: (data: ILogin) => Promise<void>
+    registerUser: (data: IRegister) => Promise<void>
+    disable: boolean
+    setDisable: React.Dispatch<React.SetStateAction<boolean>>
+    logout: () => void
+    urlApi: boolean
+    setUrlApi: React.Dispatch<React.SetStateAction<boolean>>
+    exchangeApi: () => void
+
 }
 
 export interface IChildren {
