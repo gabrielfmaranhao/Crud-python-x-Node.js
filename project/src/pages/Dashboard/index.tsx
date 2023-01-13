@@ -1,7 +1,7 @@
 import { useContext} from "react"
 import { UserContext } from "../../context/users"
 import { Card } from "../../components"
-import { Ul } from "./style"
+import { Ul, ButtonLogout, Container } from "./style"
 import { useNavigate } from "react-router-dom"
 
 export const Dashboard = () => {
@@ -15,12 +15,11 @@ export const Dashboard = () => {
         return <></>
     }
     return(
-        <>
-        
+        <Container>
             <Ul>
                 {users.map((user) => <Card key={user.id} email={user.email} username={user.username}/>)}
             </Ul>
-            <button onClick={() => logout()}>Logout</button>
-        </>
+            <ButtonLogout onClick={() => logout()}>Logout</ButtonLogout>
+        </Container>
         )
 }

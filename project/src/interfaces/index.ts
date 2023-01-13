@@ -32,7 +32,6 @@ export interface IUserContextProps {
     setUser: React.Dispatch<React.SetStateAction<IUser | undefined>>
     loading: boolean
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
-    loadUser: () => Promise<void>
     loginUser: (data: ILogin) => Promise<void>
     registerUser: (data: IRegister) => Promise<void>
     disable: boolean
@@ -51,4 +50,11 @@ export interface IChildren {
 export interface ICardProps {
     username: string
     email: string
+}
+
+export interface IUpdateUser {
+    username?: string
+    email?: string
+    password?: string
+    is_superuser?: boolean
 }

@@ -1,8 +1,9 @@
 import { createContext, useEffect, useState } from "react";
-import { IChildren, IUser, IUserContextProps, IRegister, ILogin } from "../../interfaces";
+import { IChildren, IUser, IUserContextProps, IRegister, ILogin, IUpdateUser } from "../../interfaces";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { number } from "yup";
 
 export const UserContext = createContext<IUserContextProps>({} as IUserContextProps)
 export const UserProvider = ({children}: IChildren) => {
@@ -36,20 +37,7 @@ export const UserProvider = ({children}: IChildren) => {
         loadUser();
         getUsers();
     },[user])
-    const loadUser = async () => {
-        const token = localStorage.getItem("@Crud-full: token");
-        if(token) {
-            try {
-                const { data } = await api.get("users/profile/me");
-                setUser(data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        setLoading(false)
-    }
-
-    const registerUser = async (data:IRegister) => {
+    const registerUser = async (data:IRegister):Promise<void> => {
         try {
             await toast.promise(api.post("users/", data),{pending: "Só um momento", success: "Conta criada", error: "erro"})
             setTimeout(()=> navigate("/"), 3000)
@@ -68,11 +56,12 @@ export const UserProvider = ({children}: IChildren) => {
         }
     }
 
-    const loginUser =  async (data: ILogin) => {
+    const loginUser =  async (data: ILogin):Promise<void> => {
         try {
             const response = await toast.promise(api.post("users/login/",data), {pending: "Verificando Credenciais", error: "erro", success:"Bem vindo!"})
             localStorage.setItem("@Crud-full: token", response.data.access)
-            loadUser();
+            const responseGet = await api.get("users/profile/me", {headers: {'Authorization': `Bearer ${response.data.access}`}})
+            setUser(responseGet.data)
             setTimeout(() => navigate("/dashboard"), 3500)
         } catch (error) {
             toast.error("Email ou senha incorretos !")
@@ -90,6 +79,22 @@ export const UserProvider = ({children}: IChildren) => {
         urlApi === true ? toast.success("Trocou para Python") : toast.success("Trocou para Node")
     }
 
+    const updateUser = async (data:IUpdateUser, id:number):Promise<void> => {
+        try {
+            await  api.patch(`users/${id}`, data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteUser = async (id: number):Promise<void> => {
+        try {
+            await api.delete(`users/${id}`)
+        } catch (error) {
+            
+        }
+    }
+
     const token = localStorage.getItem("@Crud-full: token")
     const api = axios.create({
         baseURL: urlApi ? "https://api-crud-full-python.onrender.com/api/": "https://api-crud-full-node.onrender.com/api/",
@@ -98,7 +103,7 @@ export const UserProvider = ({children}: IChildren) => {
         }
     })
     return(
-        <UserContext.Provider value={{setUsers, users, loading, setLoading, setUser, user, loadUser, loginUser, registerUser, disable, setDisable, logout, setUrlApi, urlApi, exchangeApi}}>
+        <UserContext.Provider value={{setUsers, users, loading, setLoading, setUser, user, loginUser, registerUser, disable, setDisable, logout, setUrlApi, urlApi, exchangeApi}}>
             {children}
         </UserContext.Provider>
     )
