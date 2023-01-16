@@ -1,3 +1,3 @@
-import { validationUserLogin, validationUserRegister } from "./serializers";
+import { validationUserLogin, validationUserRegister, validationUserUpdate } from "./serializers";
 
-export { validationUserLogin, validationUserRegister}
+export { validationUserLogin, validationUserRegister, validationUserUpdate}

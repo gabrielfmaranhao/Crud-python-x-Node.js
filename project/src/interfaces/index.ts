@@ -23,6 +23,7 @@ export interface IUser {
     email: string
     is_active: boolean
     is_superuser: boolean
+    password: string
 }
 
 export interface IUserContextProps {
@@ -40,7 +41,12 @@ export interface IUserContextProps {
     urlApi: boolean
     setUrlApi: React.Dispatch<React.SetStateAction<boolean>>
     exchangeApi: () => void
-
+    updateUser: (data:IUpdateUser, id: number) => Promise<void>
+    deleteUser: (id: number) => Promise<void>
+    modalIsOpen: boolean
+    setModalIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+    userModal: IUser
+    setUserModal: React.Dispatch<React.SetStateAction<IUser>>
 }
 
 export interface IChildren {
@@ -48,8 +54,7 @@ export interface IChildren {
 }
 
 export interface ICardProps {
-    username: string
-    email: string
+    user: IUser
 }
 
 export interface IUpdateUser {

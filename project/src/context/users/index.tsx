@@ -2,8 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { IChildren, IUser, IUserContextProps, IRegister, ILogin, IUpdateUser } from "../../interfaces";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { number } from "yup";
+import axios, { AxiosError } from "axios";
 
 export const UserContext = createContext<IUserContextProps>({} as IUserContextProps)
 export const UserProvider = ({children}: IChildren) => {
@@ -12,7 +11,10 @@ export const UserProvider = ({children}: IChildren) => {
     const [loading, setLoading] = useState<boolean>(true);
     const [disable, setDisable] = useState<boolean>(true);
     const [urlApi, setUrlApi] = useState<boolean>(true);
+    const [modalIsOpen, setModalIsOpen] = useState<boolean>(true);
+    const [userModal, setUserModal] = useState<IUser>({} as IUser)
     const navigate = useNavigate();
+    
     useEffect( () => {
         const getUsers = async () => {
             try {
@@ -36,7 +38,7 @@ export const UserProvider = ({children}: IChildren) => {
         }
         loadUser();
         getUsers();
-    },[user])
+    },[users])
     const registerUser = async (data:IRegister):Promise<void> => {
         try {
             await toast.promise(api.post("users/", data),{pending: "Só um momento", success: "Conta criada", error: "erro"})
@@ -82,16 +84,31 @@ export const UserProvider = ({children}: IChildren) => {
     const updateUser = async (data:IUpdateUser, id:number):Promise<void> => {
         try {
             await  api.patch(`users/${id}`, data)
+            toast.success("Update Concluido !")
         } catch (error) {
-            console.log(error)
+            if (error instanceof AxiosError) {
+                if (error.response?.data.username) {
+                    toast.error("Username já cadastrado")
+                    console.error(error)
+                }
+                if (error.response?.data.email) {
+                    toast.error("Email já cadastrado")
+                    console.error(error)
+                }
+                else{
+                    console.error(error)
+                }
+                
+            }
         }
     }
 
     const deleteUser = async (id: number):Promise<void> => {
         try {
             await api.delete(`users/${id}`)
+            toast.success("Usuário excluido com sucesso !")
         } catch (error) {
-            
+            console.log(error)
         }
     }
 
@@ -103,7 +120,7 @@ export const UserProvider = ({children}: IChildren) => {
         }
     })
     return(
-        <UserContext.Provider value={{setUsers, users, loading, setLoading, setUser, user, loginUser, registerUser, disable, setDisable, logout, setUrlApi, urlApi, exchangeApi}}>
+        <UserContext.Provider value={{setUsers, users, loading, setLoading, setUser, user, loginUser, registerUser, disable, setDisable, logout, setUrlApi, urlApi, exchangeApi, deleteUser, updateUser, modalIsOpen, setModalIsOpen, setUserModal, userModal}}>
             {children}
         </UserContext.Provider>
     )
