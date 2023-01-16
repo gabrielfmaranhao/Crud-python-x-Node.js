@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { validationUserUpdate } from "../../utils"
 import { ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {motion} from "framer-motion"
 export const Dashboard = () => {
     const {users, loading, user, logout, modalIsOpen, updateUser, userModal} = useContext(UserContext)
     const { register, handleSubmit} = useForm<IUpdateUser>({resolver: yupResolver(validationUserUpdate)})
@@ -24,7 +25,12 @@ export const Dashboard = () => {
         return <></>
     }
     return(
-        <>
+        <motion.div 
+        initial = {{opacity: 0}}
+        animate    = {{ opacity: 1 }}
+        exit       = {{ opacity: 0 }}
+        transition = {{ duration: 0.5 }}
+        >
             <ToastContainer position="top-right"
                             autoClose={3000}
                             hideProgressBar={false}
@@ -59,6 +65,6 @@ export const Dashboard = () => {
                     <button>Update</button>
                 </Form>
             </Modal>: <></> }
-        </>
+        </motion.div>
         )
 }
