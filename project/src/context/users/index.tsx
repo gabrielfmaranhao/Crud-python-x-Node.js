@@ -85,6 +85,7 @@ export const UserProvider = ({children}: IChildren) => {
         try {
             await  api.patch(`users/${id}`, data)
             toast.success("Update Concluido !")
+            setModalIsOpen(!modalIsOpen)
         } catch (error) {
             if (error instanceof AxiosError) {
                 if (error.response?.data.username) {

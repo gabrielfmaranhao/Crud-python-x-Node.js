@@ -9,7 +9,6 @@ export const Container = styled.div`
     align-items: center;
     gap: 20px;
 `
-
 export const Ul = styled.ul`
     display: flex;
     flex-direction: column;

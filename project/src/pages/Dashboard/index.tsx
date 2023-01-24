@@ -49,21 +49,27 @@ export const Dashboard = () => {
             </Container>
             {modalIsOpen === false ? 
             <Modal>
-                <Form title="Update user " description_operation="Update user"operation="update user" onSubmit={handleSubmit((data)=> updateUser(data, userModal.id))}>
-                    <div>
-                        <label htmlFor="username">Username</label>
-                        <input type="text" placeholder={userModal.username} {...register("username")}/>
-                    </div>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input type="text" placeholder={userModal.email} {...register("email")}/>
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input type="text" placeholder={userModal.password} {...register("password")}/>
-                    </div>
-                    <button>Update</button>
-                </Form>
+                <motion.div className="motion-modal"
+                    initial = {{scale: 0}}
+                    animate = {{scale: 1}}
+                    exit = {{scale:1}}
+                    transition ={{duration: 0.8}}>
+                    <Form title="Update user " description_operation="Update user"operation="update user" onSubmit={handleSubmit((data)=> updateUser(data, userModal.id))}>
+                        <div>
+                            <label htmlFor="username">Username</label>
+                            <input type="text" placeholder={userModal.username} {...register("username")}/>
+                        </div>
+                        <div>
+                            <label htmlFor="email">Email</label>
+                            <input type="text" placeholder={userModal.email} {...register("email")}/>
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password</label>
+                            <input type="text" placeholder={userModal.password} {...register("password")}/>
+                        </div>
+                        <button>Update</button>
+                    </Form>
+                </motion.div>
             </Modal>: <></> }
         </motion.div>
         )

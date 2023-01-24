@@ -52,5 +52,10 @@ body {
 ol, ul {
 	list-style: none;
 }
+.motion-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 `
