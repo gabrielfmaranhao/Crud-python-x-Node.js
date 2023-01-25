@@ -32,7 +32,7 @@ export const Dashboard = () => {
         transition = {{ duration: 0.5 }}
         >
             <ToastContainer position="top-right"
-                            autoClose={3000}
+                            autoClose={1000}
                             hideProgressBar={false}
                             newestOnTop={false}
                             closeOnClick

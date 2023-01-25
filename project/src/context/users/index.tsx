@@ -103,11 +103,15 @@ export const UserProvider = ({children}: IChildren) => {
             }
         }
     }
-
+// se o id for igual ao id do user move para login e apaga o localstorege
     const deleteUser = async (id: number):Promise<void> => {
         try {
             await api.delete(`users/${id}`)
             toast.success("Usuário excluido com sucesso !")
+            if(id === user?.id) {
+                localStorage.clear()
+                setTimeout( () => navigate("/"), 1000)
+            }
         } catch (error) {
             console.log(error)
         }
