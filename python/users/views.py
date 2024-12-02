@@ -4,7 +4,6 @@ from .permissions import IsAccountOwner
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 from .serializers import UserSerializer
 from rest_framework.views import Response, APIView
-import ipdb
 
 class UserView(ListCreateAPIView):
     serializer_class = UserSerializer

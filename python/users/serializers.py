@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from .models import User
-import ipdb
 # para a serialização dos dados eu utilizo o serializer do rest_framework utilizando o modelSerializer
 # no campo de configurações eu coloco a model User e os filds que quero utilizar, o extra_kwargs passo algumas configurações personalizadas 
 
